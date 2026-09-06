@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+     
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #e9ebee;
+    color: #1f2933;
+    line-height: 1.6;
+}
+header {
+    background: #99adc5;
+    padding: 20px 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 15px rgba(12, 50, 67, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+header h1 {
+    font-size: 18px;
+    color: #370e89;
+    letter-spacing: 1px;
+    margin: 20px;
+    padding: 60px;
+
+}
+nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+nav ul li {
+    position: relative;
+}
+nav ul li a {
+    display: block;
+    text-decoration: none;
+    color: #15170d;
+    padding: 18px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: 0.3s ease;
+}
+nav ul li a:hover {
+    color: #ffffff;
+    background:
+}
+.dropdown-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 180px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    padding: 8px;
+    display: none;
+}
+.dropdown-content a {
+    color: #12d5e3;
+    padding:5px 10px;
+    border-radius: 6px;
+}
+.dropdown-content a:hover {
+    background: #eef3f7;
+    color: #495f17;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.hero {
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 200px;
+     box-shadow: 0 8px 25px rgba(129, 122, 122, 0.08);
+    padding: 50px 10px;
+    background: linear-gradient(
+        135deg,
+        #1d0663,
+        #20639b
+    );
+   border-radius: 16px;
+    color: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+}
+.img hero{
+    height: 150px;
+}
+
+
+.hero h2 {
+    font-size: 52px;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.hero p {
+    font-size: 20px;
+    max-width: 650px;
+    opacity: 0.9;
+}
+.about {
+    max-width: 900px;
+    margin: 80px auto;
+    padding: 0 25px;
+    text-align: center;
+}
+
+.about h2,
+.services h2 {
+    font-size: 34px;
+    color: #173f5f;
+    margin-bottom: 20px;
+}
+
+.about h2::after,
+.services h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #f4a261;
+    margin: 12px auto 0;
+    border-radius: 10px;
+}
+
+.about p {
+    font-size: 18px;
+    color: #667085;
+    margin-top: 25px;
+}
+.services {
+    padding: 80px 8%;
+    background: #ffffff;
+    text-align: center;
+}
+
+.cards {
+    max-width: 1100px;
+    margin: 50px auto 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+.card {
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    text-align: left;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.14);
+}
+
+.card img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    display: block;
+}
+
+.card > i {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 52px;
+    height: 52px;
+    margin: -25px 0 0 25px;
+    position: relative;
+    background: #f4a261;
+    color: #ffffff;
+    border-radius: 50%;
+    font-size: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+.card h3 {
+    font-size: 22px;
+    color: #173f5f;
+    margin: 18px 25px 10px;
+}
+.card p {
+    color: #667085;
+    margin: 0 25px 25px;
+    font-size: 15px;
+}
+.tooltip {
+    position: relative;
+}
+.tooltiptext {
+    position: absolute;
+    bottom: 80px;
+    right: 20px;
+    background: #173f5f;
+    color: #ffffff;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(5px);
+    transition: 0.3s ease;
+}
+.tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    right: 20px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: #173f5f transparent transparent transparent;
+}
+.tooltip:hover .tooltiptext {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+footer {
+    background: #173f5f;
+    color: #ffffff;
+    text-align: center;
+    padding: 25px 20px;
+    margin-top: 0;
+}
+
+footer p {
+    font-size: 14px;
+    opacity: 0.9;
+}
+@media (max-width: 800px) {
+
+    header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero {
+        min-height: 420px;
+    }
+
+    .hero h2 {
+        font-size: 38px;
+    }
+
+    .hero p {
+        font-size: 17px;
+        
+    }
+    ima{
+        size: 160px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    header h1 {
+        font-size: 24px;
+    }
+
+    nav ul {
+        gap: 3px;
+    }
+
+    nav ul li a {
+        padding: 8px 10px;
+        font-size: 14px;
+    }
+
+    .hero {
+        padding: 60px 20px;
+    }
+
+    .hero h2 {
+        font-size: 32px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .about,
+    .services {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    .about h2,
+    .services h2 {
+        font-size: 28px;
+    }
+
+    .card img {
+        height: 190px;
+    }
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.contact-section {
+    width: 100%;
+    max-width: 1000px;
+    margin: 16px auto;
+
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 50px;
+}
+.contact-form {
+    border: 2px solid#dedfe0;
+    border-radius: 15px;
+    padding:60px;
+    background: #ebebe7;
+}
+.contact-form label {
+    display: block;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    margin-bottom:3px;
+}
+.contact-form input {
+    width: 100%;
+    height: 50px;
+
+    background: transparent;
+
+    border: 3px solid #292f52;
+    border-radius: 25px;
+
+    padding: 0 30px;
+
+    color: white;
+    font-size: 18px;
+
+    margin-bottom: px;
+}
+.contact-form input::placeholder {
+    color: #b7b8c2;
+}
+.contact-form textarea {
+    width: 100%;
+    height: 65px;
+
+    background: transparent;
+
+    border: 3px solid #292f52;
+    border-radius: 25px;
+
+    color: white;
+
+    padding: 10px;
+
+    resize: vertical;
+}
+.contact-form button {
+    width: 100%;
+    height: 50px;
+
+    margin-top: 16px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: #5a4de5;
+    color: white;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+.contact-form button:hover {
+    background: #6b5cf0;
+}
+.contact-info {
+    border: 2px solid #e3e4ea;
+    border-radius: 11px;
+
+    background: #f9faf8;
+
+    padding:5px 30px;
+
+    min-height: 500px;
+}
+.info-item h2 {
+    font-size: 44px;
+    font-weight: normal;
+
+    margin-bottom: 20px;
+}
+.info-item p {
+    color: #b9bac4;
+    font-size: 21px;
+
+    margin-bottom: 25px;
+}
+.line {
+    width: 100%;
+    height: 6px;
+
+    background: #aaa;
+
+    margin-top: 120px;
+}
+.follow {
+    margin-top: 135px;
+}
+
+.follow h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+.social-icons {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.social-icons a {
+    color: white;
+    text-decoration: none;
+
+    font-size: 35px;
+    font-family: Arial, sans-serif;
+}
+```
+    </style>
+</head>
+<body>
+   <h1>My Portfolio</h1>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+
+            <li><a href="#">Home</a></li>
+
+            <li><a href="#">About</a></li>
+
+            <li class="dropdown">
+
+                <a href="#">Services <i class="fa-solid fa-caret-down"></i></a>
+
+                <div class="dropdown-content">
+                    <a href="#">Web Design</a>
+                    <a href="#">UI/UX</a>
+                    <a href="#">Graphic Design</a>
+                </div>
+
+            </li>
+
+            <li><a href="#">Contact</a></li>
+
+        </ul>
+    </nav>
+
+</header>
+
+<!-- Main -->
+<main>
+
+<!-- Hero -->
+<section class="hero">
+
+    <h1>Hello I'm</h1>
+    <h2> Fatima</h2>
+
+    <p>I am a UI/UX Designer and Front-End Developer.</p>
+    <img src="image.jpg" alt="image">
+
+</section>
+
+<!-- About -->
+<section class="about">
+
+<h2>About Me</h2>
+
+<p>
+I’m a creative designer with a background in Geodesy and a passion for Graphic Design, Branding, UI Design, and Web Development. I specialize in creating clean, modern, and meaningful visual experiences using Illustrator, Photoshop, Figma, HTML, CSS, and JavaScript. I’m always learning and turning ideas into creative digital solutions.
+</p>
+
+</section>
+
+<!-- Services -->
+<section class="services">
+
+<h2>My Services</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=500" alt="">
+
+<i class="fa-solid fa-laptop-code"></i>
+
+<h3>Web Design</h3>
+
+<p>
+Modern responsive websites using HTML and CSS.
+</p>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500" alt="">
+
+<i class="fa-solid fa-pen-ruler"></i>
+
+<h3>UI / UX Design</h3>
+
+<p>
+Creative interfaces with better user experience.
+</p>
+
+</div>
+
+<div class="card tooltip">
+
+<img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500" alt="">
+
+<i class="fa-solid fa-palette"></i>
+
+<h3>Graphic Design</h3>
+
+<p>
+Professional branding and social media designs.
+</p>
+
+<span class="tooltiptext">
+Professional Designer
+</span>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+<section class="contact-section">
+
+    <!-- form-->
+    <div class="contact-form">
+
+        <form>
+
+            <label for="name">Your Name</label>
+            <input type="text" id="name" placeholder="enter your name">
+
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="enter your email">
+
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" placeholder="enter subject">
+
+            <label for="message">Message</label>
+            <textarea id="message"></textarea>
+
+            <button type="submit">Send message</button>
+
+        </form>
+
+    </div>
+
+
+    <!-- informationa contact-->
+    <div class="contact-info">
+
+        <div class="info-item">
+            <h2>Email</h2>
+            <p>fatimayousof2020@gmail.com</p>
+        </div>
+
+        <div class="info-item">
+            <h2>Phone</h2>
+            <p>+93 764384415</p>
+        </div>
+
+        <div class="info-item">
+            <h2>Location</h2>
+            <p>Kabul</p>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="follow">
+            <h2>Follow Me</h2>
+
+            <div class="social-icons">
+                <a href="#">◎</a>
+                <a href="#">●</a>
+                <a href="#">in</a>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Footer -->
+
+<footer>
+
+<p>© 2026 My Portfolio | All Rights Reserved</p>
+
+</footer>
+
+</body>
+</html>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html> 
+
+</body>
+</html>
